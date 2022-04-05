@@ -20,7 +20,16 @@ import cat12 from './assets/images/cat12.jpg';
 
 function App() {
 
-	const images = [
+	const emptyImage = {
+		image: "",
+		altText: 'No image available',
+		licenceType: '',
+		licenceUrl: '',
+		attributionName: '',
+		attributionUrl: ''
+	}
+
+		const images = [
 		{
 			image: cat1,
 			altText: 'Describe this cat!',
@@ -193,25 +202,45 @@ function App() {
 				species: 'Tiny Cat',
 				favFoods: ['milk'],
 				birthYear: 2021,
+			},
+			{
+				name: "Captain Catface",
+				species: "Sea Cattain",
+				favFoods: ["fish", "rum"],
+				birthYear: 2016,
 			}
 		]
 
 	)
+
+	const catCount = cats.length;
 
 	console.log("Our pretties 😻: ", cats)
 
 	return (
 		<>
 			<Navbar />
-			<Header />
+			<Header catCount={catCount}/>
 
 			<main>
 				<div className='cards__wrapper'>
-						{cats.map((cat: Cat, index) =>
-						(
-						<CatCard cat={cat} catImage={images[index]}/>
-						))
-						}
+						{/*{cats.map((cat: Cat, index) =>*/}
+						{/*	(*/}
+						{/*		index < catCount-1 && (<CatCard cat={cat} catImage={images[index]}/>)*/}
+						{/*	)*/}
+						{/*)*/}
+						{/*}*/}
+					{cats.map((cat: Cat, index) =>
+						<>
+							{
+								index < catCount-1 && (<CatCard cat={cat} catImage={images[index]}/>)
+							}
+							{
+								index > catCount-2 && (<CatCard cat={cat} catImage={emptyImage}/>)
+							}
+						</>
+					)
+					}
 				</div>
 			</main>
 
