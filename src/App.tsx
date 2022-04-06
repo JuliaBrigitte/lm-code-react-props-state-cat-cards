@@ -221,16 +221,17 @@ function App() {
 	console.log("Our pretties 😻: ", cats)
 
 	const [ myName, setMyName ] = useState<string>('New Cat');
-	//const [ myFavouriteFood, setMyFavouriteFood ] = useState Array<string>(['wet food', 'dry food']);
+	const [ myFavouriteFood, setMyFavouriteFood ] = useState<Array<string>>(['wet food', 'dry food']);
 	const [ myBirthday, setMyBirthday ] = useState<number>(2022);
 
-	const handleSubmit = (event: { preventDefault: () => void; }) => {
-		console.log(`The name you entered was: {nyMame}`)
+	// @ts-ignore
+	const handleSubmit = (event) => {
+		console.log("The name you entered was: " + myName)
 		cats.push(			{
-			name: "Added Cat",
+			name: myName,
 			species: "Cat",
-			favFoods: ["fish", "rum"],
-			birthYear: 2016,
+			favFoods: myFavouriteFood,
+			birthYear: myBirthday,
 		})
 		console.log("Our pretties 😻: ", cats)
 		catCount = cats.length;
@@ -243,7 +244,8 @@ function App() {
 			<Navbar />
 			<Header catCount={catCount} species="Cat"/>
 
-			<h4>Add a new Cat ----{myName}----</h4>
+			<h4>Add a new Cat -{myName}-</h4>
+			New Cat name: {myName}, Favourite Food: {[Object.values(myFavouriteFood).join(", ")]}, Birth Year: {myBirthday}
 			<form onSubmit={handleSubmit}>
 				<label>
 					Name:
@@ -251,11 +253,11 @@ function App() {
 				</label>
 				<label>
 					Favourite Food:
-					<input type="text" name="myFavouriteFood" />
+					<input type="text" value={myFavouriteFood} name="myFavouriteFood" onChange={(e) => setMyFavouriteFood(e.target.value.split(', '))}/>
 				</label>
 				<label>
-					Birthday:
-					<input type="date" name="myBirthday" max="<?= date('Y-m-d'); ?>"/>
+					Birth Year:
+					<input type="number" value={myBirthday} name="myBirthday" onChange={(e) => setMyBirthday(parseInt(e.target.value, 10))} />
 				</label>
 				<input type="submit" value="Submit" />
 			</form>
