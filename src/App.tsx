@@ -231,14 +231,14 @@ function App() {
 						{/*)*/}
 						{/*}*/}
 					{cats.map((cat: Cat, index) =>
-						<>
+						<div key={index}>
 							{
 								index < catCount-1 && (<CatCard cat={cat} catImage={images[index]}/>)
 							}
 							{
 								index > catCount-2 && (<CatCard cat={cat} catImage={emptyImage}/>)
 							}
-						</>
+						</div>
 					)
 					}
 				</div>
