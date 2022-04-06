@@ -224,7 +224,8 @@ function App(this: any) {
 	const [ myFavouriteFood, setMyFavouriteFood ] = useState<Array<string>>(['wet food', 'dry food']);
 	const [ myBirthday, setMyBirthday ] = useState<number>(2022);
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	// @ts-ignore
+	const handleSubmit = (event) => {
 		event.preventDefault()
 		console.log("The name you entered was: " + myName)
 		cats.push(			{
@@ -245,7 +246,7 @@ function App(this: any) {
 
 			<h4>Add a new Cat -{myName}-</h4>
 			New Cat name: {myName}, Favourite Food: {[Object.values(myFavouriteFood).join(", ")]}, Birth Year: {myBirthday}
-			<form onSubmit={(event) => handleSubmit(event)}>
+			<form>
 				<label>
 					Name:
 					<input type="text" value={myName} name="myName" onChange={(e) => setMyName(e.target.value)} />
@@ -258,7 +259,7 @@ function App(this: any) {
 					Birth Year:
 					<input type="number" value={myBirthday} name="myBirthday" onChange={(e) => setMyBirthday(parseInt(e.target.value, 10))} />
 				</label>
-				<input type="submit" value="Submit" />
+				<input type="submit" value="Submit" onClick={(event) => handleSubmit(event)} />
 			</form>
 
 
