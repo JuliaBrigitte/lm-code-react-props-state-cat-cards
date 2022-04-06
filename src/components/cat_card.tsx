@@ -11,10 +11,7 @@ const CatCard = ({cat, catImage}: {cat: Cat, catImage: CatImageDescription}): JS
         <CatImage catImage={catImage} />
         <p  className="card__text">Species: {species}</p>
         <p className="card__text">Favourite Food(s): {
-            favFoods.map((food: string) =>
-                (
-                    food + " "
-                ))
+            Object.values(favFoods.join(", "))
         }
         </p>
         <p className="card__text">Birth Year: {birthYear}</p>

@@ -250,7 +250,7 @@ function App(this: any) {
 				</label>
 				<label>
 					Favourite Food:
-					<input type="text" value={myFavouriteFood} name="myFavouriteFood" onChange={(e) => setMyFavouriteFood(e.target.value.split(', '))}/>
+					<input type="text" value={myFavouriteFood} name="...myFavouriteFood" onChange={(e) => setMyFavouriteFood(e.target.value.split(','))}/>
 				</label>
 				<label>
 					Birth Year:
