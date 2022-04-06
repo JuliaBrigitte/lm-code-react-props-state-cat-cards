@@ -20,7 +20,7 @@ import cat12 from './assets/images/cat12.jpg';
 import dogs from './data/dog-data';
 
 
-function App() {
+function App(this: any) {
 
 	const emptyImage = {
 		image: "",
@@ -224,8 +224,8 @@ function App() {
 	const [ myFavouriteFood, setMyFavouriteFood ] = useState<Array<string>>(['wet food', 'dry food']);
 	const [ myBirthday, setMyBirthday ] = useState<number>(2022);
 
-	// @ts-ignore
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
 		console.log("The name you entered was: " + myName)
 		cats.push(			{
 			name: myName,
@@ -235,8 +235,7 @@ function App() {
 		})
 		console.log("Our pretties 😻: ", cats)
 		catCount = cats.length;
-		setCats(cats);
-		event.preventDefault()
+		setCats(cats)
 	}
 
 	return (
@@ -246,7 +245,7 @@ function App() {
 
 			<h4>Add a new Cat -{myName}-</h4>
 			New Cat name: {myName}, Favourite Food: {[Object.values(myFavouriteFood).join(", ")]}, Birth Year: {myBirthday}
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={(event) => handleSubmit(event)}>
 				<label>
 					Name:
 					<input type="text" value={myName} name="myName" onChange={(e) => setMyName(e.target.value)} />
