@@ -130,7 +130,7 @@ function App() {
 		}
 	];
 
-	const [cats, setCats] = useState<Array<Cat>>(
+	let [cats, setCats] = useState<Array<Cat>>(
 
 		[
 			{
@@ -215,7 +215,7 @@ function App() {
 
 	)
 
-	const catCount = cats.length;
+	let catCount = cats.length;
 	const dogCount = dogs.length;
 
 	console.log("Our pretties 😻: ", cats)
@@ -227,12 +227,14 @@ function App() {
 	const handleSubmit = (event: { preventDefault: () => void; }) => {
 		console.log(`The name you entered was: {nyMame}`)
 		cats.push(			{
-			name: "Captain Catface",
+			name: "Added Cat",
 			species: "Cat",
 			favFoods: ["fish", "rum"],
 			birthYear: 2016,
 		})
 		console.log("Our pretties 😻: ", cats)
+		catCount = cats.length;
+		setCats(cats);
 		event.preventDefault()
 	}
 
@@ -241,7 +243,7 @@ function App() {
 			<Navbar />
 			<Header catCount={catCount} species="Cat"/>
 
-			<h4>Add a new Cat</h4>
+			<h4>Add a new Cat ----{myName}----</h4>
 			<form onSubmit={handleSubmit}>
 				<label>
 					Name:
