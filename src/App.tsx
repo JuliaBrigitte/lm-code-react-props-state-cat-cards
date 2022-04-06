@@ -227,16 +227,13 @@ function App(this: any) {
 	// @ts-ignore
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		console.log("The name you entered was: " + myName)
-		cats.push(			{
+		setCats([...cats,{
 			name: myName,
 			species: "Cat",
 			favFoods: myFavouriteFood,
 			birthYear: myBirthday,
-		})
-		console.log("Our pretties 😻: ", cats)
+		}])
 		catCount = cats.length;
-		setCats(cats)
 	}
 
 	return (
