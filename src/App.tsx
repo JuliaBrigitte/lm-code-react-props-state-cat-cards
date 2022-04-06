@@ -17,6 +17,8 @@ import cat9 from './assets/images/cat9.jpg';
 import cat10 from './assets/images/cat10.jpg';
 import cat11 from './assets/images/cat11.jpg';
 import cat12 from './assets/images/cat12.jpg';
+import dogs from './data/dog-data';
+
 
 function App() {
 
@@ -214,13 +216,48 @@ function App() {
 	)
 
 	const catCount = cats.length;
+	const dogCount = dogs.length;
 
 	console.log("Our pretties 😻: ", cats)
+
+	const [ myName, setMyName ] = useState<string>('New Cat');
+	//const [ myFavouriteFood, setMyFavouriteFood ] = useState Array<string>(['wet food', 'dry food']);
+	const [ myBirthday, setMyBirthday ] = useState<number>(2022);
+
+	const handleSubmit = (event: { preventDefault: () => void; }) => {
+		console.log(`The name you entered was: {nyMame}`)
+		cats.push(			{
+			name: "Captain Catface",
+			species: "Cat",
+			favFoods: ["fish", "rum"],
+			birthYear: 2016,
+		})
+		console.log("Our pretties 😻: ", cats)
+		event.preventDefault()
+	}
 
 	return (
 		<>
 			<Navbar />
-			<Header catCount={catCount}/>
+			<Header catCount={catCount} species="Cat"/>
+
+			<h4>Add a new Cat</h4>
+			<form onSubmit={handleSubmit}>
+				<label>
+					Name:
+					<input type="text" value={myName} name="myName" onChange={(e) => setMyName(e.target.value)} />
+				</label>
+				<label>
+					Favourite Food:
+					<input type="text" name="myFavouriteFood" />
+				</label>
+				<label>
+					Birthday:
+					<input type="date" name="myBirthday" max="<?= date('Y-m-d'); ?>"/>
+				</label>
+				<input type="submit" value="Submit" />
+			</form>
+
 
 			<main>
 				<div className='cards__wrapper'>
@@ -233,11 +270,23 @@ function App() {
 					{cats.map((cat: Cat, index) =>
 						<div key={index}>
 							{
-								index < catCount-1 && (<CatCard cat={cat} catImage={images[index]}/>)
+								index < 12 && (<CatCard cat={cat} catImage={images[index]}/>)
 							}
 							{
-								index > catCount-2 && (<CatCard cat={cat} catImage={emptyImage}/>)
+								index > 11 && (<CatCard cat={cat} catImage={emptyImage}/>)
 							}
+						</div>
+					)
+					}
+					{
+						<Header catCount={dogCount} species="Dog"/>
+					}
+					{dogs.map((cat: Cat, index) =>
+						<div key={index}>
+							{
+								(<CatCard cat={cat} catImage={emptyImage}/>)
+							}
+
 						</div>
 					)
 					}

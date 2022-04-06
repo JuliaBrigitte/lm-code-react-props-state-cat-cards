@@ -1,13 +1,15 @@
 interface HeaderProps{
-	catCount: number;
+	catCount: number
+	species: string
 }
 
-const Header : React.FC<HeaderProps> = ({catCount}) =>
+const Header : React.FC<HeaderProps> = ({catCount, species}) =>
 	<>
+
 	<header className='header__container'>
 		<h1 className='header__title header__welcome'>Welcome to React!</h1>
 		<h2 className='header__title'>
-			There are currently {catCount} Cats in this Cat App
+			There are currently {catCount} {species} in this Cat App
 		</h2>
 	</header>
 	</>
