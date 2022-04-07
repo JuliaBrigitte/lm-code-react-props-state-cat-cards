@@ -5,21 +5,10 @@ import Footer from './components/footer';
 import CatCard from "./components/cat_card";
 import { useState } from 'react'
 import Cat from "./data/cat";
-import cat1 from './assets/images/cat1.jpg';
-import cat2 from './assets/images/cat2.jpg';
-import cat3 from './assets/images/cat3.jpg';
-import cat4 from './assets/images/cat4.jpg';
-import cat5 from './assets/images/cat5.jpg';
-import cat6 from './assets/images/cat6.jpg';
-import cat7 from './assets/images/cat7.jpg';
-import cat8 from './assets/images/cat8.jpg';
-import cat9 from './assets/images/cat9.jpg';
-import cat10 from './assets/images/cat10.jpg';
-import cat11 from './assets/images/cat11.jpg';
-import cat12 from './assets/images/cat12.jpg';
 import dogs from './data/dog-data';
 import initialCats from "./data/cat-data";
 import images from "./data/cat-image-data";
+import CatForm from './components/cat_form';
 
 
 function App(this: any) {
@@ -33,7 +22,7 @@ function App(this: any) {
 		attributionUrl: ''
 	}
 
-	let [cats, setCats] = useState<Array<Cat>>(initialCats)
+	const [cats, setCats] = useState<Array<Cat>>(initialCats)
 
 	let catCount = cats.length;
 	const dogCount = dogs.length;
@@ -61,23 +50,7 @@ function App(this: any) {
 			<Navbar />
 			<Header catCount={catCount} species="Cat"/>
 
-			<h4>Add a new Cat -{myName}-</h4>
-			New Cat name: {myName}, Favourite Food: {[Object.values(myFavouriteFood).join(", ")]}, Birth Year: {myBirthday}
-			<form>
-				<label>
-					Name:
-					<input type="text" value={myName} name="myName" onChange={(e) => setMyName(e.target.value)} />
-				</label>
-				<label>
-					Favourite Food:
-					<input type="text" value={myFavouriteFood} name="...myFavouriteFood" onChange={(e) => setMyFavouriteFood(e.target.value.split(','))}/>
-				</label>
-				<label>
-					Birth Year:
-					<input type="number" value={myBirthday} name="myBirthday" onChange={(e) => setMyBirthday(parseInt(e.target.value, 10))} />
-				</label>
-				<input type="submit" value="Submit" onClick={(event) => handleSubmit(event)} />
-			</form>
+			<CatForm cats={cats} triggerCatsUpdate={setCats} catCount={catCount}/>
 
 
 			<main>
