@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Cat from "../data/cat";
 
-const CatForm = ({cats, triggerCatsUpdate, catCount}: {cats: Array<Cat>, triggerCatsUpdate: Function, catCount: number}) : JSX.Element =>
+const CatForm = ({cats, triggerCatsUpdate}: {cats: Array<Cat>, triggerCatsUpdate: Function}) : JSX.Element =>
 {
     const [ myName, setMyName ] = useState<string>('New Cat');
     const [ myFavouriteFood, setMyFavouriteFood ] = useState<Array<string>>(['wet food', 'dry food']);
@@ -16,7 +16,6 @@ const CatForm = ({cats, triggerCatsUpdate, catCount}: {cats: Array<Cat>, trigger
             favFoods: myFavouriteFood,
             birthYear: myBirthday,
         }])
-        catCount = cats.length;
     };
 
     return (

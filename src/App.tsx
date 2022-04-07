@@ -29,38 +29,16 @@ function App(this: any) {
 
 	console.log("Our pretties 😻: ", cats)
 
-	const [ myName, setMyName ] = useState<string>('New Cat');
-	const [ myFavouriteFood, setMyFavouriteFood ] = useState<Array<string>>(['wet food', 'dry food']);
-	const [ myBirthday, setMyBirthday ] = useState<number>(2022);
-
-	// @ts-ignore
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		setCats([...cats,{
-			name: myName,
-			species: "Cat",
-			favFoods: myFavouriteFood,
-			birthYear: myBirthday,
-		}])
-		catCount = cats.length;
-	}
-
 	return (
 		<>
 			<Navbar />
 			<Header catCount={catCount} species="Cat"/>
 
-			<CatForm cats={cats} triggerCatsUpdate={setCats} catCount={catCount}/>
+			<CatForm cats={cats} triggerCatsUpdate={setCats}/>
 
 
 			<main>
 				<div className='cards__wrapper'>
-						{/*{cats.map((cat: Cat, index) =>*/}
-						{/*	(*/}
-						{/*		index < catCount-1 && (<CatCard cat={cat} catImage={images[index]}/>)*/}
-						{/*	)*/}
-						{/*)*/}
-						{/*}*/}
 					{cats.map((cat: Cat, index) =>
 						<div key={index}>
 							{
